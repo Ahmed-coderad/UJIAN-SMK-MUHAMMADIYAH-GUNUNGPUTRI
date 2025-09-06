@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTS SMK Muhammadiyah Gunungputri</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+      /* Background kertas bergaris */
+      background-image: repeating-linear-gradient(
+        to bottom,
+        #ffffff 0px,
+        #ffffff 23px,
+        #dcdcdc 24px
+      );
+    }
+
+    header {
+      background: #1E3A8A;
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-bottom: 6px dashed #FFC107;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      animation: blinkTitle 2s infinite;
+      text-shadow: 2px 2px #1E3A8A55;
+    }
+
+    header h2 {
+      margin: 0.8rem 0 0;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #fff;
+      font-style: italic;
+    }
+
+    /* Grid menu kelas */
+    .kelas-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .kelas-card {
+      background: #ffffffcc;
+      border: 2px dashed #1E3A8A;
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .kelas-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 14px rgba(0,0,0,0.15);
+    }
+
+    .kelas-card h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #1E5631;
+      border-bottom: 3px solid #FFC107;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .kelas-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none; /* sembunyikan sub menu awalnya */
+    }
+
+    .kelas-card.active ul {
+      display: block; /* tampilkan sub menu ketika aktif */
+      margin-top: 1rem;
+    }
+
+    .kelas-card ul li {
+      margin: 0.5rem 0;
+    }
+
+    .kelas-card ul li a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #1E3A8A;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .kelas-card ul li a:hover {
+      background: #FFC107;
+      color: #1E3A8A;
+    }
+
+    main {
+      padding: 2rem 1rem 4rem;
+      text-align: center;
+      color: #1E3A8A;
+    }
+
+    main h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      animation: blinkSubtitle 2s infinite;
+      border-bottom: 3px solid #FFC107;
+      display: inline-block;
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    main p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      color: #333;
+    }
+
+    .greeting {
+      margin-top: 2rem;
+      padding: 1.2rem;
+      background: rgba(30,58,138,0.05);
+      border: 2px dashed #1E3A8A;
+      border-radius: 12px;
+      display: inline-block;
+      font-size: 1.05rem;
+      color: #1E3A8A;
+      font-style: italic;
+    }
+
+    .watermark {
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+      background: rgba(30,58,138,0.9);
+      border-top: 2px dashed #FFC107;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blinkTitle {
+      0%, 100% { color: #FFC107; }
+      50% { color: #FBFBFB; }
+    }
+
+    @keyframes blinkSubtitle {
+      0%, 100% { color: #FFC107; }
+      50% { color: #1E5631; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header h2 {
+        font-size: 1rem;
+      }
+      main h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SMK MUHAMMADIYAH GUNUNGPUTRI</h1>
+    <h2>Guru Mapel: Rizky Ahmed Darmawan, S.M</h2>
+  </header>
+
+  <main>
+    <h2>✨ Selamat Menempuh Ujian Tengah Semester ✨</h2>
+    <p>Semoga diberikan kemudahan, kelancaran, dan hasil yang terbaik untuk semua siswa SMK Muhammadiyah Gunungputri.</p>
+
+    <!-- Grid Menu -->
+    <div class="kelas-container">
+      <div class="kelas-card" onclick="toggleMenu(this)">
+        <h3>Kelas 10</h3>
+        <ul>
+          <li><a href="https://extendedforms.io/form/9fcfe6fc-e83d-4e58-8dc0-3faa80abd8a2/login" target="_blank">DKV</a></li>
+        </ul>
+      </div>
+      <div class="kelas-card" onclick="toggleMenu(this)">
+        <h3>Kelas 11</h3>
+        <ul>
+          <li><a href="https://extendedforms.io/form/9fcfe5b8-08c0-4438-9bfe-1484a2363d2b/login" target="_blank">Animasi</a></li>
+          <li><a href="https://extendedforms.io/form/9fcfe675-ad1e-4198-8652-44abbe486af9/login" target="_blank">Publikasi</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfdjts_7TVGkjUfAPPdaWuMlKwRjIeQT433MJ2QPALzf0ZC3w/viewform?usp=header" target="_blank">DGP</a></li>
+        </ul>
+      </div>
+      <div class="kelas-card" onclick="toggleMenu(this)">
+        <h3>Kelas 12</h3>
+        <ul>
+          <li><a href="https://extendedforms.io/form/9fc3e650-e6ff-4b45-9e34-08d6dae492ff/login" target="_blank">Animasi</a></li>
+          <li><a href="https://extendedforms.io/form/9fcfe05b-72bd-466e-bf9b-cde8a99fc03b/login" target="_blank">Publikasi</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="greeting">
+      <strong>Doa Kami:</strong><br>
+      "Semoga ilmu yang dipelajari menjadi berkah, dan ujian ini menjadi jalan menuju kesuksesan masa depan."
+    </div>
+  </main>
+
+  <div class="watermark">© <script>document.write(new Date().getFullYear())</script> Rizky Ahmed Darmawan, S.M</div>
+
+  <script>
+    function toggleMenu(card) {
+      card.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
