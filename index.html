@@ -236,16 +236,92 @@
       card.classList.toggle('active');
     }
 
-    // Tangkap semua link yang href-nya cuma "."
+    // Buat elemen modal
+  const modal = document.createElement('div');
+  modal.id = "customModal";
+  modal.innerHTML = `
+    <div class="modal-overlay"></div>
+    <div class="modal-box">
+      <h2>⚠️ WAKTU UJIAN BELUM DIMULAI</h2>
+      <p>Silahkan hubungi Guru Mata Pelajaran kamu.</p>
+      <button onclick="document.getElementById('customModal').style.display='none'">Tutup</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Tambahkan style modal
+  const style = document.createElement('style');
+  style.textContent = `
+    #customModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9999;
+    }
+    #customModal .modal-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    #customModal .modal-box {
+      position: relative;
+      max-width: 400px;
+      margin: 12% auto;
+      background: #fff;
+      border: 3px dashed #1E3A8A;
+      border-radius: 14px;
+      padding: 2rem;
+      text-align: center;
+      animation: fadeInDown 0.5s ease;
+      color: #1E3A8A;
+    }
+    #customModal h2 {
+      font-size: 1.3rem;
+      color: #FFC107;
+      margin-bottom: 1rem;
+    }
+    #customModal p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    #customModal button {
+      background: #1E3A8A;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #customModal button:hover {
+      background: #FFC107;
+      color: #1E3A8A;
+    }
+    @media (max-width: 600px) {
+      #customModal .modal-box {
+        margin: 30% auto;
+        width: 80%;
+        padding: 1.5rem;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Intercept semua link href="."
   document.querySelectorAll('a[href="."]').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault(); // cegah link jalan
-      alert("SILAHKAN HUBUNGI GURU MATA PELAJARAN KAMU");
+      document.getElementById('customModal').style.display = 'block';
     });
   });
   </script>
 </body>
 </html>
+
 
 
 
