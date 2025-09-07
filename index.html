@@ -235,8 +235,17 @@
     function toggleMenu(card) {
       card.classList.toggle('active');
     }
+
+    // Tangkap semua link yang href-nya cuma "."
+  document.querySelectorAll('a[href="."]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // cegah link jalan
+      alert("SILAHKAN HUBUNGI GURU MATA PELAJARAN KAMU");
+    });
+  });
   </script>
 </body>
 </html>
+
 
 
